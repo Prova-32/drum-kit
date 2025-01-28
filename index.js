@@ -6,11 +6,13 @@
 document.querySelectorAll(".letter").forEach((button) => {
     button.addEventListener("click", function() {
         getSound(this.innerHTML);
+        activeButton(this.innerHTML);
     }) ;
 }) ;
 
 document.addEventListener("keydown", function(event) {
     getSound(event.key);
+    activeButton(event.key);
 });
 
 function getSound(key) {
@@ -54,4 +56,12 @@ function getSound(key) {
             console.log(this.innerHTML);
             break;
     }
+}
+
+function activeButton(currentKey) {
+    document.querySelector("." + currentKey).classList.add("pressed");
+
+    setTimeout(function() {
+        document.querySelector("." + currentKey).classList.remove("pressed");
+    }, 100);
 }
